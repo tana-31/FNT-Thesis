@@ -1,0 +1,1220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FNT Thesis Pitch — Tanaya Shekatkar</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --fnt-navy: #0a1628;
+    --fnt-blue: #1a3a6b;
+    --fnt-accent: #4a9eff;
+    --fnt-green: #7ab648;
+    --fnt-light: #f4f7fb;
+    --fnt-muted: #6b7a99;
+    --fnt-border: #dde3ef;
+    --white: #ffffff;
+    --text: #1a2340;
+    --slide-w: 1100px;
+  }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: #0d1117;
+    color: var(--text);
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(10,22,40,0.97);
+    backdrop-filter: blur(10px);
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 56px;
+    border-bottom: 1px solid rgba(74,158,255,0.15);
+  }
+
+  .nav-logo {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--fnt-accent);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .nav-dots {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+  }
+
+  .nav-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.2);
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+
+  .nav-dot.active { background: var(--fnt-accent); transform: scale(1.3); }
+
+  .nav-arrows {
+    display: flex;
+    gap: 8px;
+  }
+
+  .nav-btn {
+    background: rgba(74,158,255,0.1);
+    border: 1px solid rgba(74,158,255,0.3);
+    color: var(--fnt-accent);
+    padding: 6px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    font-weight: 600;
+    transition: all 0.2s;
+  }
+
+  .nav-btn:hover { background: rgba(74,158,255,0.2); }
+
+  .slides { padding-top: 56px; }
+
+  .slide {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4rem 2rem;
+    position: relative;
+    scroll-margin-top: 56px;
+  }
+
+  .slide-inner {
+    width: 100%;
+    max-width: var(--slide-w);
+  }
+
+  .slide-hero { background: linear-gradient(135deg, #0a1628 0%, #0d2145 50%, #0a1628 100%); }
+  .slide-dark { background: #0f1923; }
+  .slide-accent { background: linear-gradient(135deg, #0d2145 0%, #1a3a6b 100%); }
+
+  /* HERO */
+  .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(74,158,255,0.1);
+    border: 1px solid rgba(74,158,255,0.3);
+    color: var(--fnt-accent);
+    padding: 6px 16px;
+    border-radius: 100px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+  }
+
+  .hero-title {
+    font-size: clamp(2.4rem, 5vw, 4rem);
+    font-weight: 800;
+    color: white;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.02em;
+  }
+
+  .hero-title span { color: var(--fnt-accent); }
+
+  .hero-subtitle {
+    font-size: 1.15rem;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.7;
+    max-width: 680px;
+    margin-bottom: 3rem;
+  }
+
+  .hero-meta {
+    display: flex;
+    gap: 2.5rem;
+    flex-wrap: wrap;
+  }
+
+  .hero-meta-item { display: flex; flex-direction: column; gap: 4px; }
+
+  .hero-meta-label {
+    font-size: 0.72rem;
+    color: rgba(255,255,255,0.4);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 600;
+  }
+
+  .hero-meta-value {
+    font-size: 0.95rem;
+    color: white;
+    font-weight: 500;
+  }
+
+  .hero-grid {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(74,158,255,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(74,158,255,0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+  }
+
+  .hero-glow {
+    position: absolute;
+    width: 600px; height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(74,158,255,0.12) 0%, transparent 70%);
+    top: -100px; right: -100px;
+    pointer-events: none;
+  }
+
+  /* SLIDE HEADER */
+  .slide-num {
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--fnt-accent);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .slide-num::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(74,158,255,0.2);
+    max-width: 40px;
+  }
+
+  .slide-title {
+    font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+    font-weight: 800;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.5rem;
+  }
+
+  .slide-title-dark { color: white; }
+
+  .slide-desc {
+    font-size: 1rem;
+    line-height: 1.7;
+    margin-bottom: 2.5rem;
+    color: rgba(255,255,255,0.5);
+  }
+
+  /* TOPIC BADGE */
+  .topic-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 5px 14px;
+    border-radius: 100px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+
+  .badge-primary { background: rgba(74,158,255,0.15); color: var(--fnt-accent); border: 1px solid rgba(74,158,255,0.3); }
+  .badge-alt { background: rgba(122,182,72,0.12); color: var(--fnt-green); border: 1px solid rgba(122,182,72,0.25); }
+  .badge-purple { background: rgba(139,92,246,0.12); color: #a78bfa; border: 1px solid rgba(139,92,246,0.25); }
+  .badge-orange { background: rgba(245,158,11,0.1); color: #f59e0b; border: 1px solid rgba(245,158,11,0.25); }
+  .badge-teal { background: rgba(20,184,166,0.1); color: #2dd4bf; border: 1px solid rgba(20,184,166,0.25); }
+
+  /* CARDS */
+  .card {
+    border-radius: 16px;
+    padding: 1.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .card-dark {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .card-accent {
+    background: linear-gradient(135deg, rgba(74,158,255,0.08), rgba(74,158,255,0.04));
+    border: 1px solid rgba(74,158,255,0.18);
+  }
+
+  .card-highlight {
+    background: linear-gradient(135deg, rgba(74,158,255,0.12), rgba(26,58,107,0.25));
+    border: 1px solid rgba(74,158,255,0.28);
+  }
+
+  .card-grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.2rem;
+  }
+
+  .card-grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.2rem;
+  }
+
+  /* SECTION LABEL */
+  .section-label {
+    font-size: 0.68rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--fnt-accent);
+    margin-bottom: 0.7rem;
+  }
+
+  .section-label-green { color: var(--fnt-green); }
+  .section-label-purple { color: #a78bfa; }
+  .section-label-orange { color: #f59e0b; }
+  .section-label-teal { color: #2dd4bf; }
+
+  /* TAGS */
+  .tag {
+    display: inline-flex;
+    align-items: center;
+    padding: 3px 10px;
+    border-radius: 100px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+  }
+
+  .tag-blue { background: rgba(74,158,255,0.12); color: var(--fnt-accent); border: 1px solid rgba(74,158,255,0.2); }
+  .tag-green { background: rgba(122,182,72,0.12); color: var(--fnt-green); border: 1px solid rgba(122,182,72,0.2); }
+  .tag-orange { background: rgba(255,165,0,0.1); color: #f59e0b; border: 1px solid rgba(255,165,0,0.2); }
+  .tag-purple { background: rgba(139,92,246,0.1); color: #a78bfa; border: 1px solid rgba(139,92,246,0.2); }
+  .tag-teal { background: rgba(20,184,166,0.1); color: #2dd4bf; border: 1px solid rgba(20,184,166,0.2); }
+
+  .tags-row { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 0.8rem; }
+
+  /* TOPIC LAYOUT */
+  .topic-layout {
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    gap: 2rem;
+    align-items: start;
+  }
+
+  .topic-left {
+    display: flex;
+    flex-direction: column;
+    gap: 1.4rem;
+  }
+
+  .topic-right {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  @media (max-width: 900px) {
+    .topic-layout {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* PROBLEM BLOCK */
+  .problem-block {
+    background: rgba(239,68,68,0.06);
+    border: 1px solid rgba(239,68,68,0.15);
+    border-left: 4px solid rgba(239,68,68,0.5);
+    border-radius: 0 12px 12px 0;
+    padding: 1.2rem 1.4rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .problem-label {
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #f87171;
+    margin-bottom: 0.5rem;
+  }
+
+  .problem-text {
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.75);
+    line-height: 1.65;
+  }
+
+  /* RQ BLOCK */
+  .rq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    margin-top: 0.5rem;
+  }
+
+  .rq-item {
+    display: flex;
+    gap: 0.9rem;
+    align-items: flex-start;
+  }
+
+  .rq-num {
+    width: 26px; height: 26px;
+    border-radius: 50%;
+    background: rgba(74,158,255,0.12);
+    border: 1px solid rgba(74,158,255,0.25);
+    color: var(--fnt-accent);
+    font-size: 0.7rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .rq-text {
+    font-size: 0.86rem;
+    color: rgba(255,255,255,0.7);
+    line-height: 1.55;
+  }
+
+  /* METHOD BLOCK */
+  .method-block {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .method-step {
+    display: flex;
+    gap: 0.8rem;
+    align-items: flex-start;
+    padding: 0.7rem 0.9rem;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 10px;
+  }
+
+  .method-icon {
+    font-size: 1rem;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .method-content {}
+
+  .method-title {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 2px;
+  }
+
+  .method-detail {
+    font-size: 0.76rem;
+    color: rgba(255,255,255,0.45);
+    line-height: 1.5;
+  }
+
+  /* DELIVERS BLOCK */
+  .delivers-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+    margin-top: 0.5rem;
+  }
+
+  .delivers-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    font-size: 0.84rem;
+    color: rgba(255,255,255,0.7);
+    line-height: 1.5;
+  }
+
+  .delivers-list li::before {
+    content: '→';
+    color: var(--fnt-green);
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  /* METRIC ROW */
+  .metric-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .metric-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 14px;
+    padding: 1.2rem;
+    text-align: center;
+  }
+
+  .metric-value {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--fnt-accent);
+    line-height: 1;
+    margin-bottom: 0.3rem;
+  }
+
+  .metric-label {
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.45);
+    font-weight: 500;
+  }
+
+  /* DIVIDER */
+  .divider {
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(74,158,255,0.25), transparent);
+    margin: 1.5rem 0;
+  }
+
+  /* QUOTE */
+  .quote-block {
+    background: rgba(74,158,255,0.06);
+    border-left: 4px solid var(--fnt-accent);
+    border-radius: 0 12px 12px 0;
+    padding: 1.2rem 1.5rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .quote-text {
+    font-size: 1rem;
+    color: rgba(255,255,255,0.82);
+    font-style: italic;
+    line-height: 1.7;
+  }
+
+  /* CHECK LIST */
+  .check-list { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+
+  .check-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    font-size: 0.88rem;
+    color: rgba(255,255,255,0.7);
+    line-height: 1.5;
+  }
+
+  .check-list li::before {
+    content: '✓';
+    color: var(--fnt-green);
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  /* TABLE */
+  .comp-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    font-size: 0.84rem;
+  }
+
+  .comp-table th {
+    padding: 10px 14px;
+    text-align: left;
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 700;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .comp-table th:first-child { color: rgba(255,255,255,0.4); }
+  .comp-table th:not(:first-child) { color: var(--fnt-accent); text-align: center; }
+
+  .comp-table td {
+    padding: 10px 14px;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+
+  .comp-table td:first-child { color: rgba(255,255,255,0.8); font-weight: 500; }
+  .comp-table td:not(:first-child) { text-align: center; }
+  .comp-table tr:hover td { background: rgba(255,255,255,0.02); }
+  .comp-table tr.highlight-row td { background: rgba(74,158,255,0.06); }
+
+  .dot-green { color: var(--fnt-green); }
+  .dot-yellow { color: #f59e0b; }
+  .dot-red { color: #f87171; }
+
+  /* CLOSING */
+  .closing-headline {
+    font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+    font-weight: 800;
+    color: white;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    margin-bottom: 1rem;
+  }
+
+  .closing-headline span { color: var(--fnt-accent); }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    .card-grid-2, .card-grid-3, .topic-layout { grid-template-columns: 1fr; }
+    .metric-row { grid-template-columns: repeat(2, 1fr); }
+    .hero-title { font-size: 2rem; }
+  }
+
+  html { scroll-behavior: smooth; }
+
+  /* SNAP SCROLLING */
+  html, body { height: 100%; overflow: hidden; }
+
+  .slides {
+    height: 100vh;
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .slide {
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+    height: 100vh;
+    min-height: unset;
+    overflow-y: auto;
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Thesis Pitch · Tanaya Shekatkar · FNT Software</div>
+  <div class="nav-dots" id="navDots"></div>
+  <div class="nav-arrows">
+    <button class="nav-btn" onclick="prevSlide()">← Prev</button>
+    <button class="nav-btn" onclick="nextSlide()">Next →</button>
+  </div>
+</nav>
+
+<div class="slides" id="slides">
+
+<!-- ============================================================
+     SLIDE 1 — HERO
+     ============================================================ -->
+<section class="slide slide-hero" id="slide-1">
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="slide-inner">
+    <div class="hero-eyebrow">Master's Thesis Pitch · FNT Software · September 2026</div>
+    <h1 class="hero-title">
+      Five Research Topics<br>
+      at the Intersection of<br>
+      <span>AI × UX</span> in Enterprise<br>
+      Infrastructure
+    </h1>
+    <p class="hero-subtitle">
+      A thesis collaboration proposal from Tanaya Shekatkar (THI Ingolstadt, M.Sc. UX Design) —
+      grounded in real problems inside FNT Command, designed to deliver shippable research output.
+    </p>
+    <div class="hero-meta">
+      <div class="hero-meta-item">
+        <span class="hero-meta-label">Researcher</span>
+        <span class="hero-meta-value">Tanaya Shekatkar</span>
+      </div>
+      <div class="hero-meta-item">
+        <span class="hero-meta-label">University</span>
+        <span class="hero-meta-value">THI Ingolstadt · M.Sc. UX Design</span>
+      </div>
+      <div class="hero-meta-item">
+        <span class="hero-meta-label">Current Role</span>
+        <span class="hero-meta-value">UX Designer · SAP Signavio, Munich</span>
+      </div>
+      <div class="hero-meta-item">
+        <span class="hero-meta-label">Duration</span>
+        <span class="hero-meta-value">6 months · ~20h/week</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SLIDE 2 — ABOUT ME
+     ============================================================ -->
+<section class="slide slide-dark" id="slide-2">
+  <div class="slide-inner">
+    <div class="slide-num">00 · Who I Am</div>
+    <h2 class="slide-title slide-title-dark">Enterprise UX, enterprise AI —<br>that's my daily work</h2>
+    <p class="slide-desc">4 years of UX experience, currently at SAP Signavio designing enterprise B2B software.</p>
+
+    <div class="card-grid-2" style="margin-bottom: 2rem;">
+      <div style="display: flex; flex-direction: column; gap: 1rem;">
+        <div class="card card-dark">
+          <div class="section-label">Current Role</div>
+          <div style="font-size: 1rem; font-weight: 700; color: white; margin-bottom: 0.4rem;">UX Designer · SAP Signavio, Munich</div>
+          <div style="font-size: 0.86rem; color: rgba(255,255,255,0.55); line-height: 1.6;">Working daily on enterprise B2B software — complex workflows, expert users, governance, audit-ready processes. I work with BPMN 2.0 every day, which maps directly to FNT ProcessCenter.</div>
+        </div>
+        <div class="card card-dark">
+          <div class="section-label">University</div>
+          <div style="font-size: 1rem; font-weight: 700; color: white; margin-bottom: 0.4rem;">M.Sc. UX Design · THI Ingolstadt</div>
+          <div style="font-size: 0.86rem; color: rgba(255,255,255,0.55); line-height: 1.6;">1 hour from Munich. Thesis: 6 months from registration. ~20h/week research. Not planning external publication — NDA scope stays clean.</div>
+        </div>
+      </div>
+      <div>
+        <div class="card card-highlight" style="height: 100%;">
+          <div class="section-label">What I bring that most UX researchers don't</div>
+          <ul class="check-list" style="margin-top: 0.8rem;">
+            <li>Enterprise B2B UX — won't need hand-holding on complex software</li>
+            <li>BPMN 2.0 daily experience — direct ProcessCenter credibility</li>
+            <li>AI tools in my design workflow — living the "AI in UX process" problem</li>
+            <li>Outside perspective — sees what internal teams normalize</li>
+            <li>Rigorous methods — mixed methods, A/B studies, quantitative + qualitative</li>
+            <li>Shippable output — pattern libraries, Figma components, prioritized backlogs</li>
+          </ul>
+          <div class="divider"></div>
+          <div style="font-size: 0.82rem; color: rgba(255,255,255,0.45);">Goal: not just meet the academic requirement — deliver work that FNT can actually use.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SLIDE 3 — TOPIC 1: USER TRUST IN FNT ASSISTANT
+     ============================================================ -->
+<section class="slide slide-dark" id="slide-3">
+  <div class="slide-inner">
+    <div class="slide-num">Topic 01</div>
+    <div class="topic-badge badge-primary">⭐ Recommended — FNT Assistant · User Trust in AI</div>
+    <h2 class="slide-title slide-title-dark">"How do expert users decide<br>whether to trust and act on<br>AI answers in FNT Command?"</h2>
+
+    <div class="topic-layout">
+      <div class="topic-left">
+        <div class="problem-block">
+          <div class="problem-label">The Problem</div>
+          <div class="problem-text">FNT Assistant is live in Command 14.6. Expert users ask complex questions — but without source citations, confidence signals, or clear capability limits, they can't evaluate whether to act on the answer. The result: they don't act at all, or they act on wrong information. Both are costly in critical infrastructure.</div>
+        </div>
+
+        <div>
+          <div class="section-label">Research Questions</div>
+          <div class="rq-list">
+            <div class="rq-item">
+              <div class="rq-num">Q1</div>
+              <div class="rq-text">Which UI patterns — source citations, confidence labels, capability boundaries — most improve trust calibration and task success for expert users?</div>
+            </div>
+            <div class="rq-item">
+              <div class="rq-num">Q2</div>
+              <div class="rq-text">How do failure modes (timeout, wrong answer, out-of-scope) affect user recovery — and what fallback flows minimize frustration in an enterprise context?</div>
+            </div>
+            <div class="rq-item">
+              <div class="rq-num">Q3</div>
+              <div class="rq-text">Does showing which documents the AI used reduce over-confidence in compliance-sensitive infrastructure tasks?</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="topic-right">
+        <div class="card card-accent">
+          <div class="section-label">What FNT Gets</div>
+          <ul class="delivers-list" style="margin-top: 0.5rem;">
+            <li>Validated pattern library for enterprise AI trust UX</li>
+            <li>Quantitative evidence linking transparency to task success</li>
+            <li>Prioritized roadmap for FNT Assistant next release</li>
+            <li>Figma components ready for dev handoff</li>
+          </ul>
+        </div>
+        <div class="tags-row">
+          <span class="tag tag-green">Low Risk</span>
+          <span class="tag tag-blue">Just Shipped</span>
+          <span class="tag tag-purple">A/B Testable</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SLIDE 4 — TOPIC 2: CROSS-LAYER DEPENDENCY NAVIGATION
+     ============================================================ -->
+<section class="slide slide-dark" id="slide-4">
+  <div class="slide-inner">
+    <div class="slide-num">Topic 02</div>
+    <div class="topic-badge badge-teal">FNT Command · 7-Layer Digital Twin · Research on Existing Features</div>
+    <h2 class="slide-title slide-title-dark">"How do expert users navigate<br>cross-layer dependencies to answer<br>'what breaks if this fails?'"</h2>
+
+    <div class="topic-layout">
+      <div class="topic-left">
+        <div class="problem-block">
+          <div class="problem-label">The Problem</div>
+          <div class="problem-text">FNT's digital twin spans 7 layers — Facility → Physical → Logical → Virtualization → Applications → Services → Business Services. The highest-value tasks require traversing 4–5 layers mentally: <em>"If this PDU fails, which customer-facing services go down?"</em> The current UI doesn't make this traversal intuitive. Users get lost, miss dependencies, or switch between screens at exactly the moment when speed matters most.</div>
+        </div>
+
+        <div>
+          <div class="section-label" style="color: #2dd4bf;">Research Questions</div>
+          <div class="rq-list">
+            <div class="rq-item">
+              <div class="rq-num" style="border-color: rgba(20,184,166,0.3); color: #2dd4bf;">Q1</div>
+              <div class="rq-text">Which visualization and interaction patterns best support traversing cross-layer dependencies without overwhelming expert users?</div>
+            </div>
+            <div class="rq-item">
+              <div class="rq-num" style="border-color: rgba(20,184,166,0.3); color: #2dd4bf;">Q2</div>
+              <div class="rq-text">How do AI-generated impact summaries ("4 services affected, 2 customer-facing") affect decision speed and accuracy vs. manual graph traversal?</div>
+            </div>
+            <div class="rq-item">
+              <div class="rq-num" style="border-color: rgba(20,184,166,0.3); color: #2dd4bf;">Q3</div>
+              <div class="rq-text">What level of detail — full dependency graph vs. plain-language impact card vs. progressive disclosure — best matches expert users' mental models during incident triage?</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="topic-right">
+        <div class="card card-accent" style="border-color: rgba(20,184,166,0.2);">
+          <div class="section-label section-label-teal">What FNT Gets</div>
+          <ul class="delivers-list" style="margin-top: 0.5rem;">
+            <li>Interaction pattern set for multi-layer dependency views</li>
+            <li>Evidence on when AI summaries outperform graph traversal</li>
+            <li>Design recommendations for GraphicCenter and impact analysis</li>
+          </ul>
+        </div>
+        <div class="tags-row">
+          <span class="tag tag-teal">Core Product</span>
+          <span class="tag tag-blue">High Academic Novelty</span>
+          <span class="tag tag-orange">Medium Risk</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SLIDE 5 — TOPIC 3: HUMAN-IN-THE-LOOP CHANGE APPROVALS
+     ============================================================ -->
+<section class="slide slide-dark" id="slide-5">
+  <div class="slide-inner">
+    <div class="slide-num">Topic 03</div>
+    <div class="topic-badge badge-purple">ProcessCenter + AI · Human-in-the-Loop</div>
+    <h2 class="slide-title slide-title-dark">"How should AI recommendations<br>be designed so operators approve<br>changes with confidence — not blind trust?"</h2>
+
+    <div class="topic-layout">
+      <div class="topic-left">
+        <div class="problem-block">
+          <div class="problem-label">The Problem</div>
+          <div class="problem-text">ProcessCenter manages infrastructure change workflows using BPMN 2.0. As AI recommendations enter these workflows, two failure modes emerge: <strong style="color: rgba(255,255,255,0.85);">analysis paralysis</strong> (operator freezes without enough context) and <strong style="color: rgba(255,255,255,0.85);">rubber-stamping</strong> (operator approves without understanding impact). Both are dangerous — decommissioning a PDU or modifying a WAN circuit can break live services.</div>
+        </div>
+
+        <div>
+          <div class="section-label" style="color: #a78bfa;">Research Questions</div>
+          <div class="rq-list">
+            <div class="rq-item">
+              <div class="rq-num" style="border-color: rgba(139,92,246,0.3); color: #a78bfa;">Q1</div>
+              <div class="rq-text">Which approval UI patterns — risk summaries, affected services, rollback plans, AI confidence — most improve decision quality and speed without increasing cognitive load?</div>
+            </div>
+            <div class="rq-item">
+              <div class="rq-num" style="border-color: rgba(139,92,246,0.3); color: #a78bfa;">Q2</div>
+              <div class="rq-text">How should AI suggestions be framed to avoid automation bias — where operators approve because the AI said so, not because they understood the impact?</div>
+            </div>
+            <div class="rq-item">
+              <div class="rq-num" style="border-color: rgba(139,92,246,0.3); color: #a78bfa;">Q3</div>
+              <div class="rq-text">Does integrated impact visualization directly in the approval form reduce context-switching errors during high-stakes changes?</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="topic-right">
+        <div class="card card-accent" style="border-color: rgba(139,92,246,0.2);">
+          <div class="section-label section-label-purple">What FNT Gets</div>
+          <ul class="delivers-list" style="margin-top: 0.5rem;">
+            <li>Pattern library for AI-assisted change approval UX</li>
+            <li>Evidence on automation bias in infrastructure operations</li>
+            <li>Implementation guide for ProcessCenter's AI integration</li>
+          </ul>
+        </div>
+        <div class="tags-row">
+          <span class="tag tag-purple">BPMN Expertise</span>
+          <span class="tag tag-blue">High Stakes Domain</span>
+          <span class="tag tag-green">Low-Medium Risk</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SLIDE 6 — TOPIC 4: AI-NATIVE INTERFACES FOR FUTURE FEATURES
+     ============================================================ -->
+<section class="slide slide-dark" id="slide-6">
+  <div class="slide-inner">
+    <div class="slide-num">Topic 04</div>
+    <div class="topic-badge badge-orange">AI in Future USs · FNT Command · Forward-Looking</div>
+    <h2 class="slide-title slide-title-dark">"What interaction patterns should<br>FNT establish now — before shipping<br>more AI features?"</h2>
+
+    <div class="topic-layout">
+      <div class="topic-left">
+        <div class="problem-block">
+          <div class="problem-label">The Problem</div>
+          <div class="problem-text">FNT is building more AI into Command — and each new AI feature ships its own UX conventions. Without a shared pattern language for AI-native interactions, users encounter inconsistent trust signals, unpredictable capability boundaries, and conflicting interaction models across features. Establishing these patterns now — before they accumulate — is far cheaper than retrofitting consistency later.</div>
+        </div>
+
+        <div>
+          <div class="section-label" style="color: #f59e0b;">Research Questions</div>
+          <div class="rq-list">
+            <div class="rq-item">
+              <div class="rq-num" style="border-color: rgba(245,158,11,0.3); color: #f59e0b;">Q1</div>
+              <div class="rq-text">What core interaction patterns — capability declaration, progressive disclosure, failure recovery, handoff to human — are necessary across all AI features in enterprise infrastructure software?</div>
+            </div>
+            <div class="rq-item">
+              <div class="rq-num" style="border-color: rgba(245,158,11,0.3); color: #f59e0b;">Q2</div>
+              <div class="rq-text">How do users build mental models of AI capability across multiple features — and how does inconsistency erode overall platform trust?</div>
+            </div>
+            <div class="rq-item">
+              <div class="rq-num" style="border-color: rgba(245,158,11,0.3); color: #f59e0b;">Q3</div>
+              <div class="rq-text">Which future AI use cases (predictive capacity, auto-provisioning, anomaly explanation) require patterns that don't yet exist in enterprise UX?</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="topic-right">
+        <div class="card card-accent" style="border-color: rgba(245,158,11,0.2);">
+          <div class="section-label section-label-orange">What FNT Gets</div>
+          <ul class="delivers-list" style="margin-top: 0.5rem;">
+            <li>AI interaction pattern library for FNT's design system</li>
+            <li>Cross-feature consistency audit with prioritized fixes</li>
+            <li>Foundation for all future AI feature UX decisions</li>
+          </ul>
+        </div>
+        <div class="tags-row">
+          <span class="tag tag-orange">FNT Nominated</span>
+          <span class="tag tag-orange">Highest Novelty</span>
+          <span class="tag tag-blue">Strategic Value</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SLIDE 7 — TOPIC 5: INFRASTRUCTURE HEALTH & MONITORING
+     ============================================================ -->
+<section class="slide slide-dark" id="slide-7">
+  <div class="slide-inner">
+    <div class="slide-num">Topic 05</div>
+    <div class="topic-badge badge-alt">Infrastructure H&M · NEW Product · Alert Fatigue</div>
+    <h2 class="slide-title slide-title-dark">"How do you design infrastructure<br>health views that operators act on —<br>instead of learning to ignore?"</h2>
+
+    <div class="topic-layout">
+      <div class="topic-left">
+        <div class="problem-block">
+          <div class="problem-label">The Problem</div>
+          <div class="problem-text">FNT Infrastructure Health & Monitoring just shipped — surfacing threshold violations, "last seen" signals, and documentation quality gaps. The risk: designing it like a monitoring system with too many signals and low actionability. Alert fatigue is well-documented in ICU monitoring and SIEM tools — when everything is flagged, nothing gets attention. A real failure gets missed even though the system flagged it. The UX is still being formed — this is the rarest situation in enterprise software.</div>
+        </div>
+
+        <div>
+          <div class="section-label section-label-green">Research Questions</div>
+          <div class="rq-list">
+            <div class="rq-item">
+              <div class="rq-num" style="border-color: rgba(122,182,72,0.3); color: var(--fnt-green);">Q1</div>
+              <div class="rq-text">Which visual encodings and aggregations — health scores, trend arrows, risk bands — best support rapid triage without overwhelming operators?</div>
+            </div>
+            <div class="rq-item">
+              <div class="rq-num" style="border-color: rgba(122,182,72,0.3); color: var(--fnt-green);">Q2</div>
+              <div class="rq-text">How should documentation quality indicators be presented to motivate corrective action — without creating shame, noise, or being ignored?</div>
+            </div>
+            <div class="rq-item">
+              <div class="rq-num" style="border-color: rgba(122,182,72,0.3); color: var(--fnt-green);">Q3</div>
+              <div class="rq-text">What handoff patterns to ProcessCenter or EventEngine minimize context switching during active incidents?</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="topic-right">
+        <div class="card card-accent" style="border-color: rgba(122,182,72,0.2);">
+          <div class="section-label section-label-green">What FNT Gets</div>
+          <ul class="delivers-list" style="margin-top: 0.5rem;">
+            <li>Pattern set for health/status visualization in infrastructure tools</li>
+            <li>Guidelines coupling health signals to workflows</li>
+            <li>Evidence-based UX direction for a product still being formed</li>
+          </ul>
+        </div>
+        <div class="tags-row">
+          <span class="tag tag-green">New Product</span>
+          <span class="tag tag-green">Best Timing</span>
+          <span class="tag tag-green">Lowest Risk</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SLIDE 8 — COMPARISON TABLE
+     ============================================================ -->
+<section class="slide slide-dark" id="slide-8">
+  <div class="slide-inner">
+    <div class="slide-num">06 · Overview</div>
+    <h2 class="slide-title slide-title-dark">All five topics at a glance</h2>
+    <p class="slide-desc">Evaluated across the dimensions that matter most for a thesis collaboration.</p>
+
+    <div style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.07); border-radius: 16px; overflow: hidden; margin-bottom: 1.5rem;">
+      <table class="comp-table">
+        <thead>
+          <tr>
+            <th>Topic</th>
+            <th>AI?</th>
+            <th>Access</th>
+            <th>Novelty</th>
+            <th>FNT Value</th>
+            <th>Risk</th>
+            <th>6 Months</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="highlight-row">
+            <td><strong style="color: var(--fnt-accent);">⭐ 01 · User Trust in FNT Assistant</strong></td>
+            <td><span class="tag tag-blue">Very High</span></td>
+            <td><span class="dot-green">●</span> Easy</td>
+            <td><span class="dot-green">●</span> High</td>
+            <td><span class="dot-green">●</span> Very High</td>
+            <td><span class="tag tag-green">Low</span></td>
+            <td><span class="dot-green">●</span> Yes</td>
+          </tr>
+          <tr>
+            <td><strong style="color: #2dd4bf;">02 · Cross-Layer Dependency Navigation</strong></td>
+            <td><span class="tag tag-teal">High</span></td>
+            <td><span class="dot-green">●</span> Easy</td>
+            <td><span class="dot-green">●</span> Very High</td>
+            <td><span class="dot-green">●</span> Very High</td>
+            <td><span class="tag tag-orange">Medium</span></td>
+            <td><span class="dot-yellow">●</span> Ambitious</td>
+          </tr>
+          <tr>
+            <td><strong style="color: #a78bfa;">03 · ProcessCenter Human-in-the-Loop</strong></td>
+            <td><span class="tag tag-purple">High</span></td>
+            <td><span class="dot-green">●</span> Easy</td>
+            <td><span class="dot-yellow">●</span> Medium</td>
+            <td><span class="dot-green">●</span> High</td>
+            <td><span class="tag tag-orange">Low-Med</span></td>
+            <td><span class="dot-green">●</span> Yes</td>
+          </tr>
+          <tr>
+            <td><strong style="color: #f59e0b;">04 · AI-Native UI Patterns (Future)</strong></td>
+            <td><span class="tag tag-orange">Very High</span></td>
+            <td><span class="dot-green">●</span> Easy</td>
+            <td><span class="dot-green">●</span> Very High</td>
+            <td><span class="dot-green">●</span> Very High</td>
+            <td><span class="tag tag-orange">Medium</span></td>
+            <td><span class="dot-yellow">●</span> Ambitious</td>
+          </tr>
+          <tr class="highlight-row">
+            <td><strong style="color: var(--fnt-green);">05 · Infrastructure H&M Alert Fatigue</strong></td>
+            <td><span class="tag tag-blue">Medium</span></td>
+            <td><span class="dot-green">●</span> Easy</td>
+            <td><span class="dot-green">●</span> High</td>
+            <td><span class="dot-green">●</span> High</td>
+            <td><span class="tag tag-green">Lowest</span></td>
+            <td><span class="dot-green">●</span> Yes</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card-grid-3">
+      <div class="card card-highlight">
+        <div class="section-label">My recommendation</div>
+        <div style="font-size: 0.9rem; color: rgba(255,255,255,0.8); line-height: 1.6; margin-top: 0.4rem;">Topic 01 — tightest scope, just shipped, most literature available, directly shippable in 1–2 releases. I'd lead with this.</div>
+      </div>
+      <div class="card card-dark">
+        <div class="section-label">Strong alternatives</div>
+        <div style="font-size: 0.9rem; color: rgba(255,255,255,0.6); line-height: 1.6; margin-top: 0.4rem;">Topics 02, 03, 05 all feasible with strong FNT value. Topic 02 has the highest academic novelty — no one has studied 7-layer dependency UX in depth.</div>
+      </div>
+      <div class="card card-dark">
+        <div class="section-label">Open to direction</div>
+        <div style="font-size: 0.9rem; color: rgba(255,255,255,0.6); line-height: 1.6; margin-top: 0.4rem;">If FNT has a specific pain point not covered here, I'm open to shaping the research around that — the methods and rigor apply regardless of which topic we land on.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SLIDE 9 — SETUP & COLLABORATION
+     ============================================================ -->
+<section class="slide slide-accent" id="slide-9">
+  <div class="slide-inner">
+    <div class="slide-num">07 · Collaboration Setup</div>
+    <h2 class="slide-title slide-title-dark">How we'd work together</h2>
+    <p class="slide-desc">Structure that respects FNT's time while keeping the research rigorous and on track.</p>
+
+    <div class="card-grid-2" style="margin-bottom: 1.5rem;">
+      <div style="display: flex; flex-direction: column; gap: 1rem;">
+        <div class="card card-dark">
+          <div class="section-label">My Commitment</div>
+          <ul class="check-list" style="margin-top: 0.6rem;">
+            <li>20 hours/week dedicated to thesis during research phase</li>
+            <li>Once a week at FNT office initially — to learn the product and team</li>
+            <li>Bi-weekly or weekly sync call to stay aligned and unblock decisions</li>
+            <li>Monthly progress presentation — show where the thesis stands, what's next</li>
+            <li>Documentation-quality deliverables at every milestone</li>
+          </ul>
+        </div>
+        <div class="card card-dark">
+          <div class="section-label">What I Need From FNT</div>
+          <ul class="check-list" style="margin-top: 0.6rem;">
+            <li>Product access (FNT Command + relevant product)</li>
+            <li>2–3 product experts for scenario validation (4–6 hours total)</li>
+            <li>10–16 participants for usability study (internal staff works)</li>
+            <li>Named point of contact for NDA + university agreement</li>
+            <li>Anonymized usage data or feedback examples if available</li>
+          </ul>
+        </div>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 1rem;">
+        <div class="card card-dark">
+          <div class="section-label">Logistics</div>
+          <div style="display: flex; flex-direction: column; gap: 0.5rem; margin-top: 0.5rem; font-size: 0.84rem; color: rgba(255,255,255,0.6);">
+            <div style="display: flex; justify-content: space-between;"><span>Location</span><span style="color: white; font-weight: 600;">Ingolstadt — Munich 1 hour</span></div>
+            <div style="display: flex; justify-content: space-between;"><span>Timeline</span><span style="color: white; font-weight: 600;">6 months from registration</span></div>
+            <div style="display: flex; justify-content: space-between;"><span>Hours / week</span><span style="color: white; font-weight: 600;">~20h thesis + weekends for independent work</span></div>
+            <div style="display: flex; justify-content: space-between;"><span>External publication</span><span style="color: var(--fnt-green); font-weight: 600;">None — NDA friendly</span></div>
+            <div style="display: flex; justify-content: space-between;"><span>After graduation</span><span style="color: var(--fnt-accent); font-weight: 600;">Looking for full-time in 2027</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SLIDE 10 — CLOSING
+     ============================================================ -->
+<section class="slide slide-hero" id="slide-10">
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="slide-inner">
+    <div class="hero-eyebrow">The Short Version</div>
+    <div class="closing-headline">
+      I want to solve a real problem inside FNT —<br>
+      not write a paper about a <span>hypothetical one.</span>
+    </div>
+
+    <div class="card-grid-3" style="margin-bottom: 3rem;">
+      <div class="card card-dark" style="text-align: center; padding: 1.8rem 1.2rem;">
+        <div style="font-size: 1.8rem; margin-bottom: 0.6rem;">🤖</div>
+        <div style="font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--fnt-accent); margin-bottom: 0.4rem;">Topic 01 — Recommended</div>
+        <div style="font-size: 0.9rem; font-weight: 700; color: white; margin-bottom: 0.4rem;">User Trust in FNT Assistant</div>
+        <div style="font-size: 0.8rem; color: rgba(255,255,255,0.5);">Citations, confidence, capability boundaries. Just shipped. Directly shippable output.</div>
+      </div>
+      <div class="card card-dark" style="text-align: center; padding: 1.8rem 1.2rem;">
+        <div style="font-size: 1.8rem; margin-bottom: 0.6rem;">🔄</div>
+        <div style="font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #a78bfa; margin-bottom: 0.4rem;">Topic 03 — Strong Alt</div>
+        <div style="font-size: 0.9rem; font-weight: 700; color: white; margin-bottom: 0.4rem;">ProcessCenter Human-in-the-Loop</div>
+        <div style="font-size: 0.8rem; color: rgba(255,255,255,0.5);">BPMN expertise + high stakes. Unique angle no other researcher brings.</div>
+      </div>
+      <div class="card card-dark" style="text-align: center; padding: 1.8rem 1.2rem;">
+        <div style="font-size: 1.8rem; margin-bottom: 0.6rem;">📡</div>
+        <div style="font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--fnt-green); margin-bottom: 0.4rem;">Topic 05 — Best Timing</div>
+        <div style="font-size: 0.9rem; font-weight: 700; color: white; margin-bottom: 0.4rem;">Infrastructure H&M</div>
+        <div style="font-size: 0.8rem; color: rgba(255,255,255,0.5);">New product, UX not locked. Shape it before it calcifies.</div>
+      </div>
+    </div>
+
+    <div class="hero-meta">
+      <div class="hero-meta-item">
+        <span class="hero-meta-label">Researcher</span>
+        <span class="hero-meta-value">Tanaya Shekatkar</span>
+      </div>
+      <div class="hero-meta-item">
+        <span class="hero-meta-label">University</span>
+        <span class="hero-meta-value">THI Ingolstadt · M.Sc. UX Design</span>
+      </div>
+      <div class="hero-meta-item">
+        <span class="hero-meta-label">Current Role</span>
+        <span class="hero-meta-value">UX Designer · SAP Signavio</span>
+      </div>
+      <div class="hero-meta-item">
+        <span class="hero-meta-label">Contact</span>
+        <span class="hero-meta-value">tas5940@thi.de</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+</div><!-- /slides -->
+
+<script>
+  const SLIDE_COUNT = 10;
+  let currentSlide = 1;
+
+  const dotsContainer = document.getElementById('navDots');
+  for (let i = 1; i <= SLIDE_COUNT; i++) {
+    const dot = document.createElement('div');
+    dot.className = 'nav-dot' + (i === 1 ? ' active' : '');
+    dot.onclick = () => goToSlide(i);
+    dotsContainer.appendChild(dot);
+  }
+
+  function goToSlide(n) {
+    currentSlide = Math.max(1, Math.min(SLIDE_COUNT, n));
+    const el = document.getElementById('slide-' + currentSlide);
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    updateDots();
+  }
+
+  function nextSlide() { goToSlide(currentSlide + 1); }
+  function prevSlide() { goToSlide(currentSlide - 1); }
+
+  function updateDots() {
+    document.querySelectorAll('.nav-dot').forEach((d, i) => {
+      d.classList.toggle('active', i + 1 === currentSlide);
+    });
+  }
+
+  const slidesContainer = document.getElementById('slides');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting && e.intersectionRatio >= 0.5) {
+        const id = parseInt(e.target.id.replace('slide-', ''));
+        if (!isNaN(id)) { currentSlide = id; updateDots(); }
+      }
+    });
+  }, { root: slidesContainer, threshold: 0.5 });
+
+  for (let i = 1; i <= SLIDE_COUNT; i++) {
+    const el = document.getElementById('slide-' + i);
+    if (el) observer.observe(el);
+  }
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowDown' || e.key === 'ArrowRight') nextSlide();
+    if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') prevSlide();
+  });
+</script>
+</body>
+</html>
